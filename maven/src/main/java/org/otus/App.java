@@ -21,9 +21,8 @@ package org.otus;
  * По результату выполнения тестов необходимо вывести статистику:
  * сколько прошло успешно, сколько упало, сколько было всего.
  */
-public class App
-{
-    public static void main( String[] args ) {
+public class App {
+    public static void main(String[] args) {
         Run.runTests(Tests.class);
     }
 }
