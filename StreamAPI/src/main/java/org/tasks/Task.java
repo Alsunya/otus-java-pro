@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.util.stream.Stream;
 
-abstract class CommonTask{
+abstract class CommonTask {
     @Builder
     protected static class Task {
         @Getter

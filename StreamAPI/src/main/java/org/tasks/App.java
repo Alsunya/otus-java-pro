@@ -1,7 +1,6 @@
 package org.tasks;
 
 import static org.tasks.TaskAnalyser.*;
-import static org.tasks.TaskAnalyser.getTasksCountByStatus;
 
 /**
  * TЗ:
@@ -11,10 +10,8 @@ import static org.tasks.TaskAnalyser.getTasksCountByStatus;
  * Получение списка задач в отсортированном по статусу виде: открыта, в работе, закрыта (можете выбирать любой статус и любой порядок, главное чтобы было 3 разных статуса);
  * Подсчет количества задач по определенному статусу.
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         System.out.println(getTasksByStatus(Status.NEW).toString());
         System.out.println(isTaskExist(3));
         System.out.println(isTaskExist(10));

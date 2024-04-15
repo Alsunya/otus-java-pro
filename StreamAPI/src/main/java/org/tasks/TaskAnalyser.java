@@ -25,7 +25,7 @@ public class TaskAnalyser extends CommonTask {
      * Получение списка задач в отсортированном по статусу виде:
      * открыта, в работе, закрыта (можете выбирать любой статус и любой порядок, главное чтобы было 3 разных статуса);
      */
-    public static List<Task> getSortedTasksByStatus(){
+    public static List<Task> getSortedTasksByStatus() {
         return Task.getTasksStream().sorted(Comparator.comparing(Task::getStatus))
                 .collect(Collectors.toList());
     }
@@ -33,7 +33,7 @@ public class TaskAnalyser extends CommonTask {
     /**
      * Подсчет количества задач по определенному статусу.
      */
-    public static long getTasksCountByStatus(Status status){
+    public static long getTasksCountByStatus(Status status) {
         return Task.getTasksStream().filter(task -> task.getStatus().equals(status))
                 .count();
 

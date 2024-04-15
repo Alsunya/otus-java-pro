@@ -8,10 +8,9 @@ import static junit.framework.Assert.assertTrue;
 import static org.tasks.TaskAnalyser.*;
 import static org.testng.AssertJUnit.assertFalse;
 
-public class AppTest{
+public class AppTest {
     @Test
-    void getTasksByStatusTest()
-    {
+    void getTasksByStatusTest() {
         assertEquals(2, getTasksByStatus(Status.NEW).size());
     }
 
@@ -32,7 +31,7 @@ public class AppTest{
     }
 
     @Test
-    void getTasksCountByStatusTest(){
+    void getTasksCountByStatusTest() {
         assertEquals(2, getTasksCountByStatus(Status.NEW));
         assertEquals(1, getTasksCountByStatus(Status.IN_PROGRESS));
     }
