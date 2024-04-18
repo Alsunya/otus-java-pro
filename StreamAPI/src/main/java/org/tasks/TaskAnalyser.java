@@ -34,8 +34,7 @@ public class TaskAnalyser extends CommonTask {
      * Подсчет количества задач по определенному статусу.
      */
     public static long getTasksCountByStatus(Status status) {
-        return Task.getTasksStream().filter(task -> task.getStatus().equals(status))
+        return Task.getTasksStream().filter(task -> status.equals(task.getStatus()))
                 .count();
-
     }
 }
