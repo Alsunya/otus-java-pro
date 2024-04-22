@@ -1,4 +1,4 @@
-package org.otus;
+package org.testFramework;
 
 /**
  * ТЗ:
