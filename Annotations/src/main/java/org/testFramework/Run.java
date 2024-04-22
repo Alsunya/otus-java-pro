@@ -1,4 +1,4 @@
-package org.otus;
+package org.testFramework;
 
 import java.lang.reflect.Method;
 
@@ -7,12 +7,12 @@ public class Run {
     static Method afterSuiteMethod = null;
     static int successCount = 0;
     static int failCount = 0;
-    //static boolean isTest = false;
+
     public static void runTests(Class<?> testClass) {
         Method[] testMethods = testClass.getDeclaredMethods();
         if (!checkType(testMethods)) {
             throw new IllegalArgumentException("Класс не поддерживает запуск тестов");
-        } else {
+        }
             try {
                 findBorderingAnnotations(testMethods);
 
@@ -31,7 +31,6 @@ public class Run {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
     public static void runTests(String className) throws ClassNotFoundException {
