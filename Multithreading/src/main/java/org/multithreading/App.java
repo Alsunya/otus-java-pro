@@ -15,7 +15,6 @@ package org.multithreading;
  */
 public class App {
     public static void main(String[] args) {
-
         ThreadPool threadPool = new ThreadPool(10);
 
         for (int i = 0; i < 50; i++) {
@@ -27,15 +26,16 @@ public class App {
                     MyThread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    MyThread.currentThread().interrupt();
                 }
                 System.out.println("Задача " + taskId + " выполнена");
             });
         }
-
         try {
             MyThread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            MyThread.currentThread().interrupt();
         }
         threadPool.shutdown();
     }
