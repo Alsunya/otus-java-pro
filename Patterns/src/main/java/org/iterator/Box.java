@@ -43,6 +43,8 @@ public final class Box implements Iterable<String> {
                         case 3:
                             currentListIterator = box.list4.iterator();
                             break;
+                        default:
+                            break;
                     }
                     return true;
                 } else {
