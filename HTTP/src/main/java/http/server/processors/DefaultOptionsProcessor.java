@@ -1,6 +1,6 @@
-package ru.flamexander.http.server.processors;
+package http.server.processors;
 
-import ru.flamexander.http.server.HttpRequest;
+import http.server.HttpRequest;
 
 import java.io.IOException;
 import java.io.OutputStream;

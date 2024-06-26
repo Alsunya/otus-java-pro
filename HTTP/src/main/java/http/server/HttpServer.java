@@ -1,8 +1,8 @@
-package ru.flamexander.http.server;
+package http.server;
 
+import http.server.application.Storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.flamexander.http.server.application.Storage;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -13,7 +13,6 @@ import java.util.concurrent.Executors;
 public class HttpServer {
     private int port;
     private Dispatcher dispatcher;
-    private ExecutorService executorService;
     private ThreadLocal<byte[]> requestBuffer;
 
     private static final Logger logger = LoggerFactory.getLogger(HttpServer.class.getName());
@@ -25,8 +24,9 @@ public class HttpServer {
     }
 
     public void start() {
-        executorService = Executors.newFixedThreadPool(4);
-        requestBuffer = new ThreadLocal<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+        //requestBuffer = new ThreadLocal<>();
+        requestBuffer = ThreadLocal.withInitial(() -> new byte[DEFAULT_BUFFER_SIZE]);
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             logger.info("Сервер запущен на порту: {}", port);
             this.dispatcher = new Dispatcher();
@@ -44,9 +44,6 @@ public class HttpServer {
 
     private void executeRequest(Socket socket) {
         try {
-            if (requestBuffer.get() == null) {
-                requestBuffer.set(new byte[DEFAULT_BUFFER_SIZE]);
-            }
             byte[] buffer = requestBuffer.get();
             int n = socket.getInputStream().read(buffer);
             if (n > 0) {
