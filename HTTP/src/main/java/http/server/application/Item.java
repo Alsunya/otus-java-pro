@@ -1,4 +1,4 @@
-package ru.flamexander.http.server.application;
+package http.server.application;
 
 import java.util.UUID;
 
