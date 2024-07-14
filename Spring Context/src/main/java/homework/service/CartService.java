@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Component
@@ -16,20 +17,21 @@ public class CartService {
     private final ProductService productService;
 
     public CartService(ProductService productService) {
-        products = new ArrayList<>();
+        this.products = new ArrayList<>();
         this.productService = productService;
         logger.info("Создана новая корзина.\n" +
                 "Корзина пуста.");
     }
 
     public void addToCart(int id) {
-        Product product = productService.getProductById(id);
-        if (product != null) {
-            products.add(product);
-            logger.info(String.format("В корзину добавлен товар %s", product.getName()));
-        } else {
-            notifyAboutAbsence(id);
-        }
+        Optional<Product> product = productService.getProductById(id);
+        product.ifPresentOrElse(
+                p -> {
+                    products.add(p);
+                    logger.info(String.format("В корзину добавлен товар %s", p.getName()));
+                },
+                () -> notifyAboutAbsence(id)
+        );
     }
 
     public void deleteFromCart(int id) {

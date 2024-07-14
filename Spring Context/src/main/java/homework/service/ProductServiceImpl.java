@@ -5,13 +5,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ProductServiceImpl implements ProductService {
     private final List<Product> products;
 
     public ProductServiceImpl() {
-        products = new ArrayList<>();
+        this.products = new ArrayList<>();
     }
 
     @Override
@@ -25,10 +26,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(int id) {
+    public Optional<Product> getProductById(int id) {
         return products.stream()
                 .filter(item -> item.getId() == id)
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 }
