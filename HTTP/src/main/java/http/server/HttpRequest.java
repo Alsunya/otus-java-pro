@@ -78,8 +78,8 @@ public class HttpRequest {
         headers.put("Set-Cookie", sessionID);
     }
 
-    private HashMap<String, String> parseCookie(String cookie) {
-        HashMap<String, String> cookieParams = new HashMap<>();
+    private Map<String, String> parseCookie(String cookie) {
+        Map<String, String> cookieParams = new HashMap<>();
         var cookies = cookie.split("; ");
         for (var param : cookies) {
             var splitParams = param.split("=");
@@ -90,7 +90,7 @@ public class HttpRequest {
         return cookieParams;
     }
 
-    private String cookieToString(HashMap<String, String> cookieMap) {
+    private String cookieToString(Map<String, String> cookieMap) {
         StringBuilder builder = new StringBuilder();
         for (var cookie : cookieMap.entrySet()) {
             builder.append(cookie.getKey())
@@ -103,7 +103,7 @@ public class HttpRequest {
 
     public void tryToParseBody() {
         if (method == HttpMethod.POST || method == HttpMethod.PUT) {
-            List<String> lines = rawRequest.lines().toList();
+            List<String> lines = (List<String>) rawRequest.lines();
             int splitLine = -1;
             for (int i = 0; i < lines.size(); i++) {
                 if (lines.get(i).isEmpty()) {

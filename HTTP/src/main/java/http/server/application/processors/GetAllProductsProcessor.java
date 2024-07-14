@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class GetAllProductsProcessor implements RequestProcessor, AcceptProcessor {
-    private static final String acceptHeader = "application/json";
+    private static final String ACCEPT_HEADER = "application/json";
 
     @Override
     public void execute(HttpRequest httpRequest, OutputStream output) throws IOException {
@@ -23,7 +23,7 @@ public class GetAllProductsProcessor implements RequestProcessor, AcceptProcesso
         Gson gson = new Gson();
         String result = String.format("HTTP/1.1 %s\r\n" +
                         "Content-Type: application/json\r\n" +
-                        "Set-Cookie: %s" +
+                        "Set-Cookie: %s\r\n" +
                         "Connection: keep-alive\r\n" +
                         "Access-Control-Allow-Origin: *\r\n\r\n" +
                         "\r\n%s",
@@ -34,6 +34,6 @@ public class GetAllProductsProcessor implements RequestProcessor, AcceptProcesso
 
     @Override
     public String getAccept() {
-        return acceptHeader;
+        return ACCEPT_HEADER;
     }
 }
