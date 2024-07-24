@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/accounts")
+@RequestMapping("/api/v1/products")
 public class ProductController {
     private final ProductsService productsService;
 
@@ -22,13 +22,13 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAllAccounts() {
+    public List<Product> getAllProducts() {
         return productsService.getAllProducts();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product createNewAccount(@RequestBody CreateProductDto createProductDto) {
+    public Product createNewProduct(@RequestBody CreateProductDto createProductDto) {
         return productsService.createProduct(createProductDto);
     }
 }
