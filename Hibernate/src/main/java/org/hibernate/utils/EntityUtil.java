@@ -5,11 +5,11 @@ import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class EntityUtil {
+public final class EntityUtil {
 
     private EntityUtil() {
-        throw new UnsupportedOperationException("Unsupported operation");
     }
+
     public static <T> T insert(SessionFactory sessionFactory, T entity) {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
