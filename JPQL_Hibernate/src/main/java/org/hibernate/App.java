@@ -1,6 +1,5 @@
 package org.hibernate;
 
-import org.hibernate.configurations.JavaBasedSessionFactory;
 import org.hibernate.entities.Address;
 import org.hibernate.entities.Client;
 import org.hibernate.entities.Phone;
@@ -8,14 +7,16 @@ import org.hibernate.utils.EntityUtil;
 
 import java.util.Set;
 
+import static org.hibernate.configurations.JavaBasedSessionFactory.SESSION_FACTORY;
+
 public class App {
     public static void main(String[] args) {
-        try (SessionFactory sessionFactory = JavaBasedSessionFactory.getSessionFactory()) {
+        try (SESSION_FACTORY) {
             var client = createClient("Bob",
                     "88005553535",
                     "Tverskaya");
 
-            EntityUtil.insert(sessionFactory, client);
+            EntityUtil.insert(SESSION_FACTORY, client);
         }
     }
 

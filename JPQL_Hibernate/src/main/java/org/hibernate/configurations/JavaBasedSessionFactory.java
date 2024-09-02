@@ -2,8 +2,7 @@ package org.hibernate.configurations;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -12,13 +11,12 @@ import org.hibernate.entities.Client;
 import org.hibernate.entities.Phone;
 import org.hibernate.service.ServiceRegistry;
 
-import java.lang.invoke.MethodHandles;
 import java.util.Properties;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Slf4j
 public class JavaBasedSessionFactory {
-    private static final Log LOGGER = LogFactory.getLog(MethodHandles.lookup().lookupClass());
-
+    public static final SessionFactory SESSION_FACTORY = getSessionFactory();
     public static SessionFactory getSessionFactory() {
         try {
             Configuration configuration = new Configuration();
@@ -35,12 +33,12 @@ public class JavaBasedSessionFactory {
 
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            LOGGER.info("Hibernate Java Config serviceRegistry created");
+            log.info("Hibernate Java Config serviceRegistry created");
 
             return sessionFactory;
 
         } catch (Throwable ex) {
-            LOGGER.error("Initial SessionFactory creation failed." + ex);
+            log.error("Initial SessionFactory creation failed.", ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
