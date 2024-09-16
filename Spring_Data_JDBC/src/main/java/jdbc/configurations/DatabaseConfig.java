@@ -12,11 +12,8 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class DatabaseConfig {
     private final DataSource dataSource;
-
     @PostConstruct
     public void initialize() {
-        ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
-        resourceDatabasePopulator.addScript(new ClassPathResource("db/migration/init.sql"));
-        resourceDatabasePopulator.execute(dataSource);
+        new ResourceDatabasePopulator(new ClassPathResource("db/migration/init.sql")).execute(dataSource);
     }
 }
