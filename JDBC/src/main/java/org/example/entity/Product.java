@@ -1,17 +1,23 @@
 package org.example.entity;
 
 
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table(schema = "products", name = "product")
+@NoArgsConstructor
+@Table(name = "products")
 public class Product {
     @Id
+    @Column("id")
     private Long id;
+    @Column("title")
     private String title;
-    private double price;
+    @Column("price")
+    private int price;
 
-    public Product(Long id, String title, double price) {
+    public Product(Long id, String title, int price) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -37,7 +43,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }

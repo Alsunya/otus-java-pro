@@ -1,12 +1,10 @@
-CREATE SCHEMA IF NOT EXISTS products;
-
-CREATE TABLE IF NOT EXISTS products.product (
-id SERIAL PRIMARY KEY,
-name VARCHAR(255) NOT NULL,
-price DECIMAL NOT NULL
+CREATE TABLE IF NOT EXISTS products(
+id int AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+price INT NOT NULL
 );
 
-INSERT INTO products.product (id, name, price) VALUES
-(1, 'Product 1', 10.2),
-(2, 'Product 2', 20.9),
-(3, 'Product 3', 30.5);
+INSERT INTO products (title, price) VALUES
+('Product 1', 10),
+('Product 2', 20),
+('Product 3', 30);
